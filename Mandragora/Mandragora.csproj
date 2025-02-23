@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Patches\FpcBacktrackPatch.cs" />
+    <Compile Include="Patches\Scp1344VisibilityPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
