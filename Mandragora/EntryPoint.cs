@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Exiled.API.Features;
 using Exiled.API.Interfaces;
 using HarmonyLib;
+using Mandragora.Controllers;
 
 namespace Mandragora
 {
@@ -22,6 +23,7 @@ namespace Mandragora
         public static EntryPoint Instance { get; private set; }
 
         private Harmony _harmony;
+        private IDisposable[] _controllers;
 
         public override void OnEnabled()
         {
@@ -32,11 +34,17 @@ namespace Mandragora
                 Log.Error("failed patching");
 
             WallLayerMask = new CachedLayerMask(Config.LinecastWallLayerMasks);
+            _controllers = new IDisposable[]
+            {
+                new HunterAtlasMapFixController(),
+            };
+
             base.OnEnabled();
         }
         public override void OnDisabled()
         {
             Instance = null;
+            _controllers.Do(x => x.Dispose());
             GlobalPatchProcessor.UnpatchAll(_harmony.Id);
 
             base.OnDisabled();

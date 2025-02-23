@@ -50,6 +50,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HunterAtlasMapFixController.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Patches\FpcBacktrackPatch.cs" />
     <Compile Include="Patches\Scp1344VisibilityPatch.cs" />
