@@ -19,7 +19,11 @@ namespace Mandragora.Patches
         [HarmonyPatch(MethodType.Constructor, typeof(ReferenceHub), typeof(Vector3), typeof(Quaternion), typeof(float), typeof(float), typeof(bool), typeof(bool))]
         static bool BacktrackerConstructorPrefix(FpcBacktracker __instance, ReferenceHub hub, Vector3 claimedPos, Quaternion claimedRot, float backtrack, float forecast, bool ignoreTp, bool restoreUponDeath)
         {
-            forecast = EntryPoint.Instance.Config.ForecastOverride;
+            if (PluginFeature.BacktrackForecastPatch.IsKillswitched())
+                return true;
+
+            if (!PluginFeature.BacktrackForecastOverride.IsKillswitched())
+                forecast = EntryPoint.Instance.Config.BacktrackForecastOverride;
 
             if (hub.roleManager.CurrentRole is IFpcRole fpcRole)
             {
@@ -32,11 +36,11 @@ namespace Mandragora.Patches
                 AccessTools.Field(typeof(FpcBacktracker), nameof(FpcBacktracker._prevPos)).SetValue(__instance, prevPos);
                 AccessTools.Field(typeof(FpcBacktracker), nameof(FpcBacktracker._prevRot)).SetValue(__instance, hub.PlayerCameraReference.rotation);
                 Bounds bounds = ((backtrack <= 0f) ? new Bounds(fpcModule.Position, Vector3.zero) : fpcModule.Tracer.GenerateBounds(backtrack, ignoreTp));
-                if (forecast > 0f && velocity.magnitude > EntryPoint.Instance.Config.MinVelocityRequiredToCheckForecast)
+                if (forecast > 0f && velocity.magnitude > EntryPoint.Instance.Config.BacktrackMinVelocityRequiredToCheckForecast)
                 {
                     Vector3 predictedPosition = prevPos + velocity * forecast;
                     Vector3 allowedPosition = predictedPosition;
-                    if (EntryPoint.Instance.Config.LinecastCheck && Physics.Linecast(prevPos, predictedPosition, out var hit, EntryPoint.WallLayerMask))
+                    if (!PluginFeature.BacktrackForecastLinecastCheck.IsKillswitched() && Physics.Linecast(prevPos, predictedPosition, out var hit, EntryPoint.Instance.WallLayerMask))
                     {
                         var directionToPlayer = (prevPos - hit.point).normalized;
                         Vector3 posCloserToPlayer = hit.point + (directionToPlayer * 0.05f);

@@ -10,7 +10,7 @@ using PlayerRoles.Visibility;
 
 namespace Mandragora.Patches
 {
-    [HarmonyPatch(typeof(FpcVisibilityController))]
+    [HarmonyPatch()]
     class Scp1344VisibilityPatch
     {
         [HarmonyReversePatch]
@@ -22,9 +22,12 @@ namespace Mandragora.Patches
 
         [HarmonyPrefix()]
         [HarmonyPatch(MethodType.Getter)]
-        [HarmonyPatch(nameof(FpcVisibilityController.IgnoredFlags))]
+        [HarmonyPatch(typeof(FpcVisibilityController), nameof(FpcVisibilityController.IgnoredFlags))]
         static bool IgnoredFlagsPrefix(FpcVisibilityController __instance, ref InvisibilityFlags __result)
         {
+            if (PluginFeature.Scp1344OutOfRangeVisibilityFix.IsKillswitched())
+                return true;
+
             __result = IgnoredFlags_BaseStub(__instance);
             if (__instance._scp1344Effect.IsEnabled)
                 __result |= (InvisibilityFlags.Scp268 | InvisibilityFlags.Scp106Sinkhole);

@@ -19,6 +19,9 @@ namespace Mandragora.Controllers
 
         public HunterAtlasMapFixController()
         {
+            if (PluginFeature.HunterAtlasSurfaceFix.IsKillswitched())
+                return;
+
             Exiled.Events.Handlers.Scp106.Teleporting += On106Teleporting;
             Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingForPlayers;
             ElevatorChamber.OnElevatorMoved += OnElevatorMoved;
@@ -26,6 +29,9 @@ namespace Mandragora.Controllers
 
         public void Dispose()
         {
+            if (PluginFeature.HunterAtlasSurfaceFix.IsKillswitched())
+                return;
+
             Exiled.Events.Handlers.Scp106.Teleporting -= On106Teleporting;
             Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingForPlayers;
             ElevatorChamber.OnElevatorMoved -= OnElevatorMoved;
@@ -38,13 +44,10 @@ namespace Mandragora.Controllers
 
         void On106Teleporting(TeleportingEventArgs ev)
         {
-            if (!ev.IsAllowed)
+            if (!ev.IsAllowed || ev.Player.IsDisconnected())
                 return;
 
-            if (ev.Player?.Connection?.identity == null)
-                return;
-
-            if (ev.Position.y > Scp106Minimap.SurfaceHeightThreshold)
+            if (ev.Position.y > Scp106Minimap.SurfaceHeightThreshold || ev.Player.Position.y > Scp106Minimap.SurfaceHeightThreshold)
             {
                 ev.IsAllowed = false;
                 return;

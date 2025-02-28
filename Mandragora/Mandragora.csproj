@@ -36,7 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
@@ -45,13 +45,21 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Cmds\AntiflashCmd.cs" />
+    <Compile Include="Cmds\WallhackCmd.cs" />
+    <Compile Include="Patches\Scp106StalkVisibilityFix.cs" />
+    <Compile Include="PluginFeature.cs" />
+    <Compile Include="Controllers\AdminAntiflashController.cs" />
+    <Compile Include="Controllers\AdminWallhackController.cs" />
     <Compile Include="Controllers\HunterAtlasMapFixController.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Managers\OverwatchFeaturesManager.cs" />
     <Compile Include="Patches\FpcBacktrackPatch.cs" />
     <Compile Include="Patches\Scp1344VisibilityPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
