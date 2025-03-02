@@ -43,6 +43,7 @@ namespace Mandragora
                 new HunterAtlasMapFixController(),
                 new AdminWallhackController(),
                 new AdminAntiflashController(),
+                new RealClientPositionController(),
             };
 
             base.OnEnabled();
@@ -99,6 +100,7 @@ namespace Mandragora
 
             [PluginFeature.AdminWallhackCmd] = false,
             [PluginFeature.AdminAntiflashCmd] = false,
+            [PluginFeature.RealClientPosCmd] = false,
 
             [PluginFeature.HunterAtlasSurfaceFix] = false,
         };

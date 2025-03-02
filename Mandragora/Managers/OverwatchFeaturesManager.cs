@@ -11,11 +11,14 @@ namespace Mandragora.Managers
     {
         public List<string> UseridsWallhackRequests { get; set; } = new List<string>();
         public List<string> UseridsAntiflashRequests { get; set; } = new List<string>();
+        public List<string> UseridsClientPosRequests { get; set; } = new List<string>();
         public IEnumerable<Player> ActiveWallhack => Player.List.Where(HasActiveWallhack);
         public IEnumerable<Player> ActiveAntiflash => Player.List.Where(HasActiveAntiflash);
+        public IEnumerable<Player> ActiveRealClientPos => Player.List.Where(HasActiveAntiflash);
 
         public bool HasActiveWallhack(Player player) => UseridsWallhackRequests.Contains(player.UserId) && player.IsOverwatchEnabled;
         public bool HasActiveAntiflash(Player player) => UseridsAntiflashRequests.Contains(player.UserId) && player.IsOverwatchEnabled;
+        public bool HasActiveRealClientPos(Player player) => UseridsClientPosRequests.Contains(player.UserId) && player.IsOverwatchEnabled;
 
         public static void EnableVisuals(Player player)
         {

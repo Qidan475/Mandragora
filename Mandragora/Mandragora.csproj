@@ -51,7 +51,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Cmds\AntiflashCmd.cs" />
+    <Compile Include="Cmds\ClientPosCmd.cs" />
     <Compile Include="Cmds\WallhackCmd.cs" />
+    <Compile Include="Controllers\RealClientPositionController.cs" />
+    <Compile Include="Patches\FpcDataApplyPatch.cs" />
+    <Compile Include="Patches\FpcPositionSyncDataPatch.cs" />
     <Compile Include="Patches\Scp106StalkVisibilityFix.cs" />
     <Compile Include="PluginFeature.cs" />
     <Compile Include="Controllers\AdminAntiflashController.cs" />
