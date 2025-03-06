@@ -57,6 +57,7 @@
     <Compile Include="Patches\FpcDataApplyPatch.cs" />
     <Compile Include="Patches\FpcPositionSyncDataPatch.cs" />
     <Compile Include="Patches\Scp106StalkVisibilityFix.cs" />
+    <Compile Include="Patches\TeslaChargePatch.cs" />
     <Compile Include="PluginFeature.cs" />
     <Compile Include="Controllers\AdminAntiflashController.cs" />
     <Compile Include="Controllers\AdminWallhackController.cs" />
@@ -66,6 +67,8 @@
     <Compile Include="Managers\OverwatchFeaturesManager.cs" />
     <Compile Include="Patches\FpcBacktrackPatch.cs" />
     <Compile Include="Patches\Scp1344VisibilityPatch.cs" />
+    <Compile Include="PrimitivesAPI.cs" />
+    <Compile Include="PrimitivesPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
