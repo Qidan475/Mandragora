@@ -44,6 +44,7 @@ namespace Mandragora
                 new AdminWallhackController(),
                 new AdminAntiflashController(),
                 new RealClientPositionController(),
+                new ElevatorNoclipFixController(),
             };
 
             base.OnEnabled();
@@ -88,6 +89,13 @@ namespace Mandragora
             EffectType.Blurred,
             EffectType.Flashed,
         };
+        [Description("Thing that prevents cheaters from noclipping through closing doors of elevators. Base-game value is 0.20 (basically disabled). You can decrease it, to make less false-positives")]
+        public float ElevatorNoclipThreshold { get; set; } = 0.48f;
+        [Description("Elevators to EXCLUDE from that protection (just to minimize false-positives)")]
+        public List<ElevatorType> ElevatorsToExcludeNoclipProtection { get; set; } = new List<ElevatorType>()
+        {
+            ElevatorType.Nuke,
+        };
 
         [Description("Quick way to disable certain features, in case the plugin starts behaving")]
         public Dictionary<PluginFeature, bool> FeaturesKillswitch { get; set; } = new Dictionary<PluginFeature, bool>()
@@ -103,6 +111,7 @@ namespace Mandragora
             [PluginFeature.RealClientPosCmd] = false,
 
             [PluginFeature.HunterAtlasSurfaceFix] = false,
+            [PluginFeature.ElevatorNoclipFix] = false,
         };
     }
 }
