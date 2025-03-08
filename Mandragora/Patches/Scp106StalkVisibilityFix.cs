@@ -24,17 +24,22 @@ namespace Mandragora.Patches
         [HarmonyPatch(typeof(FpcVisibilityController), nameof(FpcVisibilityController.GetActiveFlags))]
         static void GetActiveFlagsPostfix(ReferenceHub observer, FpcVisibilityController __instance, ref InvisibilityFlags __result)
         {
+            InvisibilityFlags isOwnerInvisible = __result;
             if (PluginFeature.Scp106StalkVisibilityFix.IsKillswitched())
                 return;
 
-            if (__result.HasFlagFast(InvisibilityFlags.OutOfRange) || !HitboxIdentity.IsEnemy(__instance.Owner, observer))
+            if (isOwnerInvisible.HasFlagFast(InvisibilityFlags.OutOfRange) || !HitboxIdentity.IsEnemy(__instance.Owner, observer))
                 return;
 
-            if (__instance.Owner.roleManager.CurrentRole is not PlayerRoles.PlayableScps.Scp106.Scp106Role scp106 || scp106.VisibilityController is not Scp106VisibilityController visController)
+            if (observer.roleManager.CurrentRole is not PlayerRoles.PlayableScps.Scp106.Scp106Role scp106 || scp106.VisibilityController is not Scp106VisibilityController visController)
                 return;
 
-            if (!visController._visSubroutine.SyncDamage.ContainsKey(observer.PlayerId))
-                __result |= InvisibilityFlags.OutOfRange;
+            bool wasOwnerHurtBy106 = visController._visSubroutine.SyncDamage.ContainsKey(__instance.Owner.PlayerId);
+            bool isTooClose = (scp106.FpcModule.Position - observer.GetPosition()).sqrMagnitude < (5 * 5);
+            if (scp106.Sinkhole.IsHidden && !wasOwnerHurtBy106 && !isTooClose)
+                isOwnerInvisible |= InvisibilityFlags.OutOfRange;
+
+            __result = isOwnerInvisible;
         }
     }
 }
