@@ -44,6 +44,7 @@ namespace Mandragora
                 new AdminWallhackController(),
                 new AdminAntiflashController(),
                 new RealClientPositionController(),
+                new AntiTeslaFixController(),
             };
 
             base.OnEnabled();
@@ -89,6 +90,11 @@ namespace Mandragora
             EffectType.Flashed,
         };
 
+        [Description("Timings how serverside tesla detection checks the players inside the killbox. Default value is ~0.50. You can increase to make it harder for cheaters, or decrease to make less false-positives. Max value is 1.00")]
+        public float TeslaFiringDurationMultiplier { get; set; } = 0.45f;
+        [Description("Tesla's killbox size multiplier. Default is 1.00. Decrease to make less false-positives")]
+        public float TeslaKillboxMultiplier { get; set; } = 0.95f;
+
         [Description("Quick way to disable certain features, in case the plugin starts behaving")]
         public Dictionary<PluginFeature, bool> FeaturesKillswitch { get; set; } = new Dictionary<PluginFeature, bool>()
         {
@@ -103,6 +109,7 @@ namespace Mandragora
             [PluginFeature.RealClientPosCmd] = false,
 
             [PluginFeature.HunterAtlasSurfaceFix] = false,
+            [PluginFeature.AntiTeslaFix] = false,
         };
     }
 }

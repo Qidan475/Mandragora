@@ -53,11 +53,13 @@
     <Compile Include="Cmds\AntiflashCmd.cs" />
     <Compile Include="Cmds\ClientPosCmd.cs" />
     <Compile Include="Cmds\WallhackCmd.cs" />
+    <Compile Include="Controllers\AntiTeslaFixController.cs" />
     <Compile Include="Controllers\RealClientPositionController.cs" />
     <Compile Include="Patches\FpcDataApplyPatch.cs" />
     <Compile Include="Patches\FpcPositionSyncDataPatch.cs" />
     <Compile Include="Patches\Scp106StalkVisibilityFix.cs" />
     <Compile Include="Patches\TeslaChargePatch.cs" />
+    <Compile Include="Patches\TeslaHitReceivedPatch.cs" />
     <Compile Include="PluginFeature.cs" />
     <Compile Include="Controllers\AdminAntiflashController.cs" />
     <Compile Include="Controllers\AdminWallhackController.cs" />
