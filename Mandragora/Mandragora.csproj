@@ -57,6 +57,7 @@
     <Compile Include="Patches\FpcDataApplyPatch.cs" />
     <Compile Include="Patches\FpcPositionSyncDataPatch.cs" />
     <Compile Include="Patches\Scp106StalkVisibilityFix.cs" />
+    <Compile Include="Patches\Scp939LungeProcessCmdPatch.cs" />
     <Compile Include="PluginFeature.cs" />
     <Compile Include="Controllers\AdminAntiflashController.cs" />
     <Compile Include="Controllers\AdminWallhackController.cs" />
