@@ -35,7 +35,7 @@ namespace Mandragora.Patches
                 return;
 
             bool wasOwnerHurtBy106 = visController._visSubroutine.SyncDamage.ContainsKey(__instance.Owner.PlayerId);
-            bool isTooClose = (scp106.FpcModule.Position - observer.GetPosition()).sqrMagnitude < (5 * 5);
+            bool isTooClose = (scp106.FpcModule.Position - __instance.Owner.GetPosition()).sqrMagnitude < (5 * 5);
             if (scp106.Sinkhole.IsHidden && !wasOwnerHurtBy106 && !isTooClose)
                 isOwnerInvisible |= InvisibilityFlags.OutOfRange;
 
