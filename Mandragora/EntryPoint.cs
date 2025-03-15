@@ -117,7 +117,7 @@ namespace Mandragora
             new CheckableRoom()
             {
                 Room = RoomType.LczArmory,
-                BoundsStart = new Vector3(-1.0f, -0.85f, -4.5f),
+                BoundsStart = new Vector3(-1.45f, -0.85f, -4.5f),
                 BoundsEnd = new Vector3(5.8f, 6f, 4.75f),
                 LinecastPoint = new Vector3(0.6f, 0.65f, 0),
             },
