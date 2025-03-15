@@ -80,6 +80,21 @@ namespace Mandragora
             return isKillswitched;
         }
 
+        public static Vector3 GetWorldPositionFrom(this Vector3 offset, RoomType room)
+        {
+            if (room == RoomType.Surface)
+                return offset;
+
+            var foundRoom = Room.Get(room);
+            if (foundRoom == null)
+            {
+                Log.Warn($"null room: {offset}, {room}");
+                return offset;
+            }
+
+            return foundRoom.WorldPosition(offset);
+        }
+
         public static Color SetBrightness(this Color color, float brightness)
         {
             color *= brightness;
