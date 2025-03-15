@@ -151,6 +151,8 @@ namespace Mandragora
             [PluginFeature.RealClientPosCmd] = false,
 
             [PluginFeature.HunterAtlasSurfaceFix] = false,
+            [PluginFeature.PickingItemsThroughWallsFix] = false,
+            [PluginFeature.LocalPositionCmd] = false,
         };
     }
 }

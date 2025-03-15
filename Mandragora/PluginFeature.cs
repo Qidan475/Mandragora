@@ -17,6 +17,7 @@ namespace Mandragora
         HunterAtlasSurfaceFix,
         Scp106StalkVisibilityFix,
         RealClientPosCmd,
-        PickingItemsThroughWallsFix
+        PickingItemsThroughWallsFix,
+        LocalPositionCmd,
     }
 }

@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Cmds\AntiflashCmd.cs" />
     <Compile Include="Cmds\ClientPosCmd.cs" />
+    <Compile Include="Cmds\LocalPosCmd.cs" />
     <Compile Include="Cmds\WallhackCmd.cs" />
     <Compile Include="Controllers\PickingThroughWallFixController.cs" />
     <Compile Include="Controllers\RealClientPositionController.cs" />
