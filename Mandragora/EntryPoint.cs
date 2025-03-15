@@ -10,6 +10,7 @@ using Exiled.API.Interfaces;
 using HarmonyLib;
 using Mandragora.Controllers;
 using Mandragora.Managers;
+using UnityEngine;
 
 namespace Mandragora
 {
@@ -44,6 +45,7 @@ namespace Mandragora
                 new AdminWallhackController(),
                 new AdminAntiflashController(),
                 new RealClientPositionController(),
+                new PickingThroughWallFixController(),
             };
 
             base.OnEnabled();
@@ -87,6 +89,52 @@ namespace Mandragora
         {
             EffectType.Blurred,
             EffectType.Flashed,
+        };
+
+        public List<CheckableRoom> CheckableRoomPositions { get; set; } = new List<CheckableRoom>()
+        {
+            new CheckableRoom()
+            {
+                Room = RoomType.HczHid,
+                BoundsStart = new Vector3(1.5f, 3.9f, -6.1f),
+                BoundsEnd = new Vector3(7.0f, 8.5f, 2.6f),
+                LinecastPoint = new Vector3(2.3f, 5.2f, 0.85f),
+            },
+            new CheckableRoom()
+            {
+                Room = RoomType.HczArmory,
+                BoundsStart = new Vector3(-0.2f, -1.4f, -2f),
+                BoundsEnd = new Vector3(4.0f, 3.9f, 2.4f),
+                LinecastPoint = new Vector3(0.25f, 1.2f, 0),
+            },
+            new CheckableRoom()
+            {
+                Room = RoomType.Hcz096,
+                BoundsStart = new Vector3(0.3f, -1.2f, 1.9f),
+                BoundsEnd = new Vector3(-3.7f, 3.8f, -2f),
+                LinecastPoint = new Vector3(-2.85f, 1.25f, 0),
+            },
+            new CheckableRoom()
+            {
+                Room = RoomType.LczArmory,
+                BoundsStart = new Vector3(-1.0f, -0.85f, -4.5f),
+                BoundsEnd = new Vector3(5.8f, 6f, 4.75f),
+                LinecastPoint = new Vector3(0.6f, 0.65f, 0),
+            },
+            new CheckableRoom()
+            {
+                Room = RoomType.Lcz914,
+                BoundsStart = new Vector3(4.0f, -0.75f, 3.7f),
+                BoundsEnd = new Vector3(5.7f, 3.05f, 6.7f),
+                LinecastPoint = new Vector3(4.3f, 0.3f, 4.2f),
+            },
+            new CheckableRoom()
+            {
+                Room = RoomType.Lcz914,
+                BoundsStart = new Vector3(4.0f, -0.75f, -7.05f),
+                BoundsEnd = new Vector3(5.7f, 3.05f, -3.85f),
+                LinecastPoint = new Vector3(4.3f, 0.3f, -6.65f),
+            },
         };
 
         [Description("Quick way to disable certain features, in case the plugin starts behaving")]
