@@ -44,6 +44,7 @@ namespace Mandragora
                 new AdminWallhackController(),
                 new AdminAntiflashController(),
                 new RealClientPositionController(),
+                new ElevatorNoclipFixController(),
                 new AntiTeslaFixController(),
             };
 
@@ -89,6 +90,13 @@ namespace Mandragora
             EffectType.Blurred,
             EffectType.Flashed,
         };
+        [Description("Thing that prevents cheaters from noclipping through closing doors of elevators. Base-game value is 0.20 (basically disabled). You can decrease it, to make less false-positives")]
+        public float ElevatorNoclipThreshold { get; set; } = 0.48f;
+        [Description("Elevators to EXCLUDE from that protection (just to minimize false-positives)")]
+        public List<ElevatorType> ElevatorsToExcludeNoclipProtection { get; set; } = new List<ElevatorType>()
+        {
+            ElevatorType.Nuke,
+        };
 
         [Description("Timings how serverside tesla detection checks the players inside the killbox. Default value is ~0.50. You can increase to make it harder for cheaters, or decrease to make less false-positives. Max value is 1.00")]
         public float TeslaFiringDurationMultiplier { get; set; } = 0.45f;
@@ -110,6 +118,7 @@ namespace Mandragora
 
             [PluginFeature.HunterAtlasSurfaceFix] = false,
             [PluginFeature.AntiTeslaFix] = false,
+            [PluginFeature.ElevatorNoclipFix] = false,
         };
     }
 }

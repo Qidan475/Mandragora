@@ -53,6 +53,7 @@
     <Compile Include="Cmds\AntiflashCmd.cs" />
     <Compile Include="Cmds\ClientPosCmd.cs" />
     <Compile Include="Cmds\WallhackCmd.cs" />
+    <Compile Include="Controllers\ElevatorNoclipFixController.cs" />
     <Compile Include="Controllers\AntiTeslaFixController.cs" />
     <Compile Include="Controllers\RealClientPositionController.cs" />
     <Compile Include="Patches\FpcDataApplyPatch.cs" />

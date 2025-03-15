@@ -16,7 +16,8 @@ namespace Mandragora
         AdminAntiflashCmd,
         HunterAtlasSurfaceFix,
         Scp106StalkVisibilityFix,
-        RealClientPosCmd,
         AntiTeslaFix,
+        RealClientPosCmd,
+        ElevatorNoclipFix
     }
 }
