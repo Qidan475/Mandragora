@@ -9,6 +9,7 @@ using Exiled.API.Extensions;
 using Exiled.API.Features;
 using InventorySystem.Items.Usables.Scp1344;
 using Mirror;
+using UnityEngine;
 
 namespace Mandragora
 {
@@ -77,6 +78,28 @@ namespace Mandragora
                 return false;
 
             return isKillswitched;
+        }
+
+        public static Vector3 GetWorldPositionFrom(this Vector3 offset, RoomType room)
+        {
+            if (room == RoomType.Surface)
+                return offset;
+
+            var foundRoom = Room.Get(room);
+            if (foundRoom == null)
+            {
+                Log.Warn($"null room: {offset}, {room}");
+                return offset;
+            }
+
+            return foundRoom.WorldPosition(offset);
+        }
+
+        public static Color SetBrightness(this Color color, float brightness)
+        {
+            color *= brightness;
+            color.a = 0.1f;
+            return color;
         }
     }
 }
