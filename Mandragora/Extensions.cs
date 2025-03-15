@@ -9,6 +9,7 @@ using Exiled.API.Extensions;
 using Exiled.API.Features;
 using InventorySystem.Items.Usables.Scp1344;
 using Mirror;
+using UnityEngine;
 
 namespace Mandragora
 {
@@ -77,6 +78,13 @@ namespace Mandragora
                 return false;
 
             return isKillswitched;
+        }
+
+        public static Color SetBrightness(this Color color, float brightness)
+        {
+            color *= brightness;
+            color.a = 0.1f;
+            return color;
         }
     }
 }
